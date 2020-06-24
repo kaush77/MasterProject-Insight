@@ -1,0 +1,98 @@
+ {
+                 
+	"element_1":{
+		"inner_1":[
+			
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"section",
+				 "tag": "section",
+				 "class": "top-vertical-trio wrapper row",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false" 
+			 },
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"anchor",
+				 "tag": "a",
+				 "class": "tout-title-link",
+				 "id":"",
+				 "data_field":"link",
+				 "data" : "true", 
+				 "type" : ""
+			 },
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"div",
+				 "tag": "div",
+				 "class": "tout-copy",
+				 "id":"",
+				 "data_field":"sub_header",
+				 "data" : "true", 
+				 "type" : ""
+			 },
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"span",
+				 "tag": "span",
+				 "class": "tout-timestamp",
+				 "id":"",
+				 "data_field":"published_date",
+				 "data" : "true", 
+				 "type" : ""
+			 }
+		]
+	},
+	"element_2":{
+		"inner_1":[
+			{
+				 "lookup_by":"class",
+				 "tag_type":"section",
+				 "tag": "section",
+				 "class": "vertical is-right-rail js-feed",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false" 
+			},
+			{
+				 "lookup_by":"class",
+				 "tag_type":"anchor",
+				 "tag": "a",
+				 "class": "tout-title-link",
+				 "id":"",
+				 "data_field":"link",
+				 "data" : "true", 
+				 "type" : ""
+			},
+			{
+				 "lookup_by":"class",
+				 "tag_type":"div",
+				 "tag": "div",
+				 "class": "tout-copy river",
+				 "id":"",
+				 "data_field":"sub_header",
+				 "data" : "true", 
+				 "type" : ""
+			},
+			{
+				 "lookup_by":"class",
+				 "tag_type":"div",
+				 "tag": "div",
+				 "class": "tout-tag d-lg-flex",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false" 
+			},
+			{
+				 "lookup_by":"class",
+				 "tag_type":"span",
+				 "tag": "span",
+				 "class": "tout-timestamp js-date-format",
+				 "id":"",
+				 "data_field":"published_date",
+				 "data" : "true" 
+			}
+		]
+	}
+}

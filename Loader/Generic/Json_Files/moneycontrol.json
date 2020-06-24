@@ -1,0 +1,73 @@
+ {
+  
+    "element_1":{
+		"inner_1":[
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"div",
+				 "tag": "div",
+				 "class": "fleft",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false"
+			 },
+			{
+				 "lookup_by":"id",
+				 "tag_type":"ul",
+				 "tag": "ul",
+				 "class": "",
+				 "id":"cagetory",
+				 "data_field":"",
+				 "data" : "false" 
+			 },
+			{
+				 "lookup_by":"class",
+				 "tag_type":"li",
+				 "tag": "li",
+				 "class": "",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false" 
+			 },
+			{
+				 "lookup_by":"class",
+				 "tag_type":"span",
+				 "tag": "span",
+				 "class": "",
+				 "id":"",
+				 "data_field":"published_date",
+				 "data" : "true",
+				 "type" : ""
+			 },
+			{
+				 "lookup_by":"class",
+				 "tag_type":"p",
+				 "tag": "p",
+				 "class": "",
+				 "id":"",
+				 "data_field":"sub_header",
+				 "data" : "true",
+				 "type" : ""
+			 },
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"h2",
+				 "tag": "h2",
+				 "class": "",
+				 "id":"",
+				 "data_field":"",
+				 "data" : "false" 
+			 },
+			 {
+				 "lookup_by":"class",
+				 "tag_type":"anchor",
+				 "tag": "a",
+				 "class": "",
+				 "id":"",
+				 "data_field":"link",
+				 "data" : "true",
+				 "type" : ""
+			 }
+		]
+	 }
+}

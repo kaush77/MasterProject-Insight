@@ -1,0 +1,54 @@
+ {
+                 
+	"element_1":{
+		"inner_1":[
+		 {
+			 "lookup_by":"class",
+			 "tag_type":"div",
+			 "tag": "div",
+			 "class": "module-pagination__content",
+			 "id":"",
+			 "data_field":"",
+			 "data" : "false" 
+		 },
+		 {
+			 "lookup_by":"class",
+			 "tag_type":"div",
+			 "tag": "div",
+			 "class": "content-feed__card-content",
+			 "id":"",
+			 "data_field":"",
+			 "data" : "false"
+		 },		
+		 {
+			 "lookup_by":"class",
+			 "tag_type":"div",
+			 "tag": "div",
+			 "class": "content-feed__card-timestamp",
+			 "id":"",
+			 "data_field":"published_date",
+			 "data" : "true", 
+			 "type" : "1"
+		 },
+		 {
+			 "lookup_by":"class",
+			 "tag_type":"h3",
+			 "tag": "h3",
+			 "class": "",
+			 "id":"",
+			 "data_field":"",
+			 "data" : "false" 
+		 },	
+		 {
+			 "lookup_by":"class",
+			 "tag_type":"anchor",
+			 "tag": "a",
+			 "class": "content-feed__card-title-link",
+			 "id":"",
+			 "data_field":"link",
+			 "data" : "true", 
+			 "type" : ""
+		 }
+	   ]
+	 }
+}
