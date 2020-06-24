@@ -2,14 +2,14 @@
 ## Sentiment prediction of tweets and financial news headlines using open-source supervised machine learning
 
 ### Notes
-
-# Create a virtual environment "Insight"
-# Activate the virtual environment 
-# Install related packages to run this project
+   - Create a virtual environment "Insight"
+   - Activate the virtual environment 
+   - Install related packages to run this project
 
 ### Steps To Run Project
 
-## Folder SentimentAnalysis
+### Folder "SentimentAnalysis"
+
    ### News (To calculate news headlines sentiment)
        ### python run_news_sentiment_analyzer.py
        
