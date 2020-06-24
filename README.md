@@ -10,9 +10,9 @@
 
 ### Folder "SentimentAnalysis"
 
-   ### News (To calculate news headlines sentiment)
+   ### News Folder (To calculate news headlines sentiment)
        ### python run_news_sentiment_analyzer.py
        
-   ### Twitter (To calculate Twitter tweets)
+   ### Twitter Folder (To calculate Twitter tweets)
        ### python run_twitter_sentiment_analyzer.py
 
