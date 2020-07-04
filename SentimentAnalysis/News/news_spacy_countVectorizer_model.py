@@ -16,6 +16,7 @@ from sklearn.svm import LinearSVC, SVC
 from sklearn.naive_bayes import MultinomialNB, BernoulliNB
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV
 
 # replace apostrophe/short words in python
 from contractions import contractions_dict
@@ -164,22 +165,21 @@ def train_count_vectorizor_model(X_train, X_test, y_train, y_test,classifier):
 
     # load count vectorizer pipeline
     model = vectorization_pipeline(classifier)
-
+ 
+    gs_cv_model = GridSearchCV(model,[{ }] ,scoring='accuracy',
+                               cv=10,verbose=1,n_jobs=-1)
+    
     # fit data set
-    model.fit(X_train, y_train)
+    gs_cv_model.fit(X_train, y_train)    
+    train_accuracy = gs_cv_model.best_score_
+    
+    # get test score
+    clf = gs_cv_model.best_estimator_ 
+    test_accuracy = clf.score(X_test, y_test)
 
-    # predicting with a test data set
-    text_prediction = model.predict(X_test)
+    fpr, tpr = get_roc_curve(gs_cv_model, X_test, y_test) 
 
-    # get roc curve data
-    fpr, tpr = get_roc_curve(model, X_test, y_test)
-
-     # Accuracy
-    X_test_y_test = model.score(X_test,y_test)
-    X_test_text_prediction = model.score(X_test,text_prediction)
-    X_train_y_train= model.score(X_train,y_train)
-
-    return model,X_test_y_test,X_train_y_train,fpr, tpr
+    return model,train_accuracy,test_accuracy,fpr, tpr
 
 # save train model
 def save_train_model(model, file_name):
@@ -208,13 +208,13 @@ def train_model():
 
     for classifier_key, classifier in classifiers_list.items():
 
-        model,X_test_y_test,X_train_y_train,fpr, tpr = train_count_vectorizor_model(
+        model,train_accuracy,test_accuracy,fpr, tpr = train_count_vectorizor_model(
                                         X_train, X_test, y_train, y_test,classifier)
 
         model_result = {
          'Model': classifier_key,
-         'Training Set Accuracy': ((X_train_y_train) * 100),
-             'Test Set Accuracy': ((X_train_y_train) * 100)
+         'Training Set Accuracy': ((train_accuracy) * 100),
+             'Test Set Accuracy': ((test_accuracy) * 100)
         }
 
         model_result_df = model_result_df.append(model_result, ignore_index=True)

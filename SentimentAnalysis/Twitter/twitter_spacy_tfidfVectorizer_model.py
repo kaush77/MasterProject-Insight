@@ -21,6 +21,7 @@ from nltk.corpus import stopwords
 from sklearn.metrics import make_scorer, accuracy_score, f1_score
 from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import confusion_matrix, roc_auc_score, recall_score, precision_score
+from sklearn.model_selection import GridSearchCV
 
 # Ensemble
 from nltk.classify import ClassifierI
@@ -130,23 +131,26 @@ def train_tfidf_vectorizor_model(X_train, X_test, y_train, y_test,classifier):
     # load tfidf vectorizer pipeline
     model = tfidf_vectorizer_pipeline(classifier)
 
+    gs_cv_model = GridSearchCV(model,[{ }] ,scoring='accuracy',
+                               cv=10,verbose=1,n_jobs=-1)
+    
     # fit data set
-    model.fit(X_train, y_train)
+    gs_cv_model.fit(X_train, y_train)    
+    train_accuracy = gs_cv_model.best_score_
 
-    # predicting with a test data set
-    tweet_prediction = model.predict(X_test)
+    clf = gs_cv_model.best_estimator_ 
+    test_accuracy = clf.score(X_test, y_test)
 
     # get roc curve data
-    fpr, tpr = get_roc_curve(model, X_test, y_test)
+    fpr, tpr = get_roc_curve_data(gs_cv_model, X_test, y_test) 
 
-    # Accuracy
-    X_test_y_test = model.score(X_test,y_test)
-    X_test_tweet_prediction = model.score(X_test,tweet_prediction)
-    X_train_y_train= model.score(X_train,y_train)
+    return model,train_accuracy,test_accuracy,fpr, tpr
 
-    return model,X_test_y_test,X_train_y_train,fpr, tpr
-
-
+def get_roc_curve_data(model, X, y):
+    pred_proba = model.predict_proba(X)[:, 1]
+    fpr, tpr, _ = roc_curve(y, pred_proba)     
+    return fpr, tpr
+    
 def process_model():
     model_result_df = pd.DataFrame(columns=["Model","Training Set Accuracy","Test Set Accuracy"])
 
@@ -164,13 +168,13 @@ def process_model():
 
     for classifier_key, classifier in classifiers_list.items():
 
-        model,X_test_y_test,X_train_y_train,fpr, tpr = train_tfidf_vectorizor_model(
+        model,train_accuracy,test_accuracy,fpr, tpr = train_tfidf_vectorizor_model(
                                         X_train, X_test, y_train, y_test,classifier)
 
         model_result = {
          'Model': classifier_key,
-         'Training Set Accuracy': ((X_train_y_train) * 100),
-             'Test Set Accuracy': ((X_train_y_train) * 100)
+         'Training Set Accuracy': ((train_accuracy) * 100),
+             'Test Set Accuracy': ((test_accuracy) * 100)
         }
 
         model_result_df = model_result_df.append(model_result, ignore_index=True)

@@ -21,6 +21,7 @@ from nltk.corpus import stopwords
 from sklearn.metrics import make_scorer, accuracy_score, f1_score
 from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import confusion_matrix, roc_auc_score, recall_score, precision_score
+from sklearn.model_selection import GridSearchCV
 
 # load training dataset
 import data_load as load
@@ -129,23 +130,26 @@ def train_count_vectorizor_model(X_train, X_test, y_train, y_test,classifier):
     # load count vectorizer pipeline
     model = vectorization_pipeline(classifier)
 
+    gs_cv_model = GridSearchCV(model,[{ }] ,scoring='accuracy', cv=10,verbose=1,n_jobs=-1)
+    
     # fit data set
-    model.fit(X_train, y_train)
-
-    # predicting with a test data set
-    tweet_prediction = model.predict(X_test)
+    gs_cv_model.fit(X_train, y_train)    
+    train_accuracy = gs_cv_model.best_score_
+    
+    # get test score
+    clf = gs_cv_model.best_estimator_ 
+    test_accuracy = clf.score(X_test, y_test)
 
     # get roc curve data
-    fpr, tpr = get_roc_curve(model, X_test, y_test)
+    fpr, tpr = get_roc_curve_data(gs_cv_model, X_test, y_test) 
+ 
+    return model,train_accuracy,test_accuracy,fpr, tpr
 
-    # Accuracy
-    X_test_y_test = model.score(X_test,y_test)
-    X_test_tweet_prediction = model.score(X_test,tweet_prediction)
-    X_train_y_train= model.score(X_train,y_train)
-
-    return model,X_test_y_test,X_train_y_train,fpr, tpr
-
-
+def get_roc_curve_data(model, X, y):
+    pred_proba = model.predict_proba(X)[:, 1]
+    fpr, tpr, _ = roc_curve(y, pred_proba)     
+    return fpr, tpr
+    
 def process_model():
     model_result_df = pd.DataFrame(columns=["Model","Training Set Accuracy","Test Set Accuracy"])
 
